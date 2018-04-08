@@ -24,7 +24,8 @@ class PostArchiveIndexView(ArchiveIndexView):
 
 
 class PostYearArchiveView(YearArchiveView):
-    model = Postdate_field = 'modify_date'
+    model = Post
+    date_field = 'modify_date'
     make_object_list = True
 
 

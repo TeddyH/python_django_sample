@@ -20,10 +20,10 @@ urlpatterns = [
     url(r'^(?P<year>\d{4})/$', PostYearArchiveView.as_view(), name='post_year_archive'),
 
     # Example : /2012/nov/
-    url(r'^(?P<year>\d{4})/(?P<month>[a-z]{3})/$', PostMonthArchiveView.as_view(), name='post_month_archive'),
+    url(r'^(?P<year>\d{4})/(?P<month>\d{1,2}월)/$', PostMonthArchiveView.as_view(), name='post_month_archive'),
 
     # Example : /2012/nov/10/
-    url(r'^(?P<year>\d{4})/(?P<month>[a-z]{3})/(?P<day>\d{1,2})/$', PostDayArchiveView.as_view(), name='post_day_archive'),
+    url(r'^(?P<year>\d{4})/(?P<month>\d{1,2}월)/(?P<day>\d{1,2})/$', PostDayArchiveView.as_view(), name='post_day_archive'),
 
     # Example : /today/
     url(r'^today/$', PostTodayArchiveView.as_view(), name='post_today_archive'),
