@@ -1,33 +1,31 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-<h1>BLog List</h1>
+{% block title %}post_all.html{% endblock %}
 
-{% for post in posts %}
-    <h2><a href="{{ post.get_absolution_url }}">{{ post.title }}</a></h2>
-    {{ post.modify_date|date:"N d, Y" }}
-    <p>{{  post.description }}</p>
-{% endfor %}
+{% block content %}
+    <div id="content">
+        <h1>BLog List</h1>
 
-<br/>
+        {% for post in posts %}
+            <h2><a href="{{ post.get_absolution_url }}">{{ post.title }}</a></h2>
+            {{ post.modify_date|date:"N d, Y" }}
+            <p>{{ post.description }}</p>
+        {% endfor %}
 
-<div>
+        <br/>
+
+        <div>
     <span>
-        {%  if page_obj.has_previous %}
+        {% if page_obj.has_previous %}
             <a href="?page={{ page_obj.previous_page_number }}">PreviousPage</a>
         {% endif %}
 
         Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
 
-        {%  if page_obj.has_next %}
+        {% if page_obj.has_next %}
             <a href="?page={{ page_obj.next_page_number }}">NextPage</a>
         {% endif %}
     </span>
-</div>
-</body>
-</html>
+        </div>
+    </div>
+{% endblock %}
