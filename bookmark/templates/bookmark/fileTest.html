@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<input type="file"/>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+</head>
+<body>
+
+<form action="#">
+    <div class="file-field input-field">
+        <div class="btn">
+            <span>File</span>
+            <input type="file" id="file" name="파일 선택" accept="image/*;capture=camera"/>
+        </div>
+        <div class="file-path-wrapper">
+            <input class="file-path validate" type="text"/>
+        </div>
+
+        <div id="holder"></div>
+    </div>
+</form>
+<script>
+    $(document).ready(function () {
+        var holder = document.getElementById('holder');
+
+        $("input[name=file]").change(function () {
+            var file = $(this)[0].files[0];
+            var reader = new FileReader();
+            reader.onload = function (event) {
+                var img = new Image();
+                img.src = event.target.result;
+                // note: no onload required since we've got the dataurl...I think! :)
+
+                holder.innerHTML = '';
+                holder.appendChild(img);
+            };
+            reader.readAsDataURL(file);
+
+            return false;
+
+        });
+    });
+</script>
+</body>
+</html>
